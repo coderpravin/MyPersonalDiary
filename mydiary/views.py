@@ -3,6 +3,7 @@ from .models import MyDiary
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def home_view(request):
@@ -10,6 +11,7 @@ def home_view(request):
     context = {'entries' : entries}
     return render(request, 'mydiary/home.html', context)
 
+@login_required
 def add_entry_view(request):
     if request.method == "POST":
         title = request.POST.get('title')
@@ -25,7 +27,7 @@ def add_entry_view(request):
             
     return render(request, 'mydiary/add_entry.html')
 
-
+@login_required
 def register_view(request):
     if request.method == "POST":
         username = request.POST.get('username')
@@ -45,7 +47,7 @@ def register_view(request):
         return redirect('login')
     return render(request, 'mydiary/register.html')
 
-
+@login_required
 def login_view(request):
     if request.method == "POST":
         username = request.POST.get('username')
@@ -66,6 +68,7 @@ def logout_view(request):
     messages.success(request, "The user Logout success")
     return redirect('login')
 
+@login_required
 def delete_entry_view(request, entry_id):
     entry = get_object_or_404(MyDiary, id=entry_id, user=request.user)    
     entry.delete()

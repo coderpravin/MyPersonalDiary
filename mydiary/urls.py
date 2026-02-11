@@ -6,7 +6,7 @@ urlpatterns = [
     path('add-entry', views.add_entry_view, name='add-entry'),
     path('register', views.register_view, name='register'),
     path('login', views.login_view, name='login'),
-    path('logout', views.login_view, name='logout'),
+    path('logout/', views.login_view, name='logout'),
     path('delete-entry/<int:entry_id>', views.delete_entry_view, name='delete-entry'),
     
     
