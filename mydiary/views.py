@@ -48,7 +48,7 @@ def register_view(request):
         return redirect('login')
     return render(request, 'mydiary/register.html')
 
-@login_required
+
 def login_view(request):
     if request.method == "POST":
         username = request.POST.get('username')
@@ -57,7 +57,13 @@ def login_view(request):
         if user is not None:
             login(request, user)
             messages.success(request, "The Login successfull")
+            # handle next parameter
+            next_url = request.GET.get('next')
+            if next_url:
+                return redirect(next_url)
             return redirect('home')
+
+        
         else:
             messages.error(request, "The credentials in not valid")
             
