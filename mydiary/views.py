@@ -28,7 +28,6 @@ def add_entry_view(request):
             
     return render(request, 'mydiary/add_entry.html')
 
-@login_required
 def register_view(request):
     if request.method == "POST":
         username = request.POST.get('username')
@@ -69,7 +68,7 @@ def login_view(request):
             
     return render(request, 'mydiary/login.html')
 
-
+@login_required
 def logout_view(request):
     logout(request)
     messages.success(request, "The user Logout success")

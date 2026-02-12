@@ -72,7 +72,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mydiary_project.wsgi.application'
 
-
 # get the DATABASE_URL from environment
 DATABASE_URL = os.environ.get("DATABASE_URL")
 
@@ -102,6 +101,7 @@ DATABASES = {
     }
 }
 '''
+
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
